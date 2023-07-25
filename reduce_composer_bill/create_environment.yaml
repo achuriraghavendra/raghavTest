@@ -1,1 +1,13 @@
-create_environment.yaml
+steps:
+
+  - name: gcr.io/cloud-builders/gcloud
+    entrypoint: /bin/bash
+    id: 'Create environment'
+    args:
+      - -c
+      - |
+        set -e
+        project_id=	handy-cell-393914
+        env_name=my-basic-environment
+        gcloud composer environments create ${env_name} --location europe-west1 --project ${project_id} --image-version=composer-2.1.10-airflow-2.4.3
+          #--service-account sac-cmp@${project_id}.iam.gserviceaccount.com
